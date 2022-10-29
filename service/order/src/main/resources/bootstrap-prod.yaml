@@ -1,0 +1,17 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        # 配置中心地址
+        server-addr: 192.168.3.88:8848
+        namespace: local
+      discovery:
+        server-addr: ${spring.cloud.nacos.config.server-addr}
+        # 配置文件格式
+        file-extension: yaml
+        # 共享配置
+        shared-configs:
+          - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+    loadbalancer:
+      nacos:
+        enabled: true

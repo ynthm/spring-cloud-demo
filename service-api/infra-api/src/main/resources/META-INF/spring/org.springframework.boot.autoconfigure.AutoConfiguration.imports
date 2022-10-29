@@ -1,0 +1,2 @@
+com.ynthm.infra.api.factory.SmsApiFallbackFactory
+com.ynthm.infra.api.handler.CaptchaHandler

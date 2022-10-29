@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.3.88:8848
+server:
+  ssl:
+    key-store: classpath:security/keystore.p12
+    key-password: wang0804
+    key-store-password: wang0804
+  http2:
+    enabled: true

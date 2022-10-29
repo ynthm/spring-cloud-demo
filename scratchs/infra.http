@@ -1,0 +1,94 @@
+### /infra/mail/send
+POST {{host}}:{{port}}/infra/mail/send
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "item": {
+    "recipientAddress": "wys@veiban.com"
+  },
+  "content": {
+    "subject": "你好！",
+    "html": false,
+    "body": "你好。"
+  }
+}
+
+###
+POST {{host}}:{{port}}/infra/code/sms
+Content-Type: application/json
+Authorization: Bearer {{token}}
+tenantId: 123
+
+{
+  "captchaScope": 0,
+  "lang": "zh-CN",
+  "phoneNumber": {
+    "areaCode": 86,
+    "number": 18588207723
+  }
+}
+
+
+### /infra/mail/smtp/send
+POST {{host}}:{{port}}/infra/mail/smtp/send
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+Authorization: Bearer {{token}}
+
+--WebAppBoundary--
+Content-Disposition: form-data; name="req";
+Content-Type: application/json
+
+{
+  "to": [
+    "iwys@qq.com"
+  ],
+  "subject": "hello",
+  "content": "hello ethan",
+  "multipart": true,
+  "attachmentFileList": []
+}
+
+--WebAppBoundary
+Content-Disposition: form-data; name="attachmentFileList"; filename="fileUpload.json"
+
+< H:\doc\hmac.md
+
+
+--WebAppBoundary
+
+### /mail/smtp/send/attached
+
+POST {{host}}:{{port}}/infra/mail/smtp/send/attached
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+Authorization: Bearer {{token}}
+
+--WebAppBoundary
+Content-Disposition: form-data; name="message";
+Content-Type: application/json
+
+{
+  "to": [
+    "iwys@qq.com"
+  ],
+  "subject": "hello",
+  "content": "hello ethan",
+  "multipart": true,
+  "attachmentFileList": []
+}
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="hmac111.md"
+
+< H:\doc\hmac.md
+
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="hmac222.md"
+
+< H:\doc\hmac.md
+
+
+--WebAppBoundary--
+
+
+###

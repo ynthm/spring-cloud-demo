@@ -1,0 +1,52 @@
+### /infra/sms/send
+POST {{basepath}}/sms/send
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{}
+
+### /code/sms
+POST {{basepath}}/code/sms
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "captchaScope": 2,
+  "lang": "zh-CN",
+  "phoneNumber": {
+    "areaCode": 86,
+    "number": 18588207723
+  }
+}
+
+### POST /sms/template
+POST {{basepath}}/sms/template
+Content-Type: application/json
+
+{
+  "type": 0,
+  "name": "手机验证码登陆",
+  "content":"【优质云】手机登录验证码${code}，10钟有效，请勿泄露！",
+  "remark": "验证码登陆"
+}
+
+### GET /sms/template
+GET {{basepath}}/sms/template
+Accept: application/json
+Content-Type: application/json
+
+{
+  "code": "SMS_255360469"
+}
+
+### PATCH /sms/template
+PATCH {{basepath}}/sms/template
+Content-Type: application/json
+
+{
+  "type": 0,
+  "code": "SMS_255360469",
+  "name": "手机验证码登陆",
+  "content":"<优质云> 手机登录验证码：${code}，10钟有效，请勿泄露！",
+  "remark": "验证码登陆"
+}

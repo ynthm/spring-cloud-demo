@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: svc-gateway
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${spring.cloud.nacos.config.server-addr}
+      config:
+        server-addr: 192.168.3.88:8848
+        file-extension: yaml
+    loadbalancer:
+      nacos:
+        enabled: true
+    gateway:
+      routes:
+        - id: ynthm-auth
+          uri: lb://svc-auth
+          predicates:
+            - Path=/auth/**
+          filters:
+            - CacheRequestFilter
+            - StripPrefix=1
+cors:
+  allowedOriginPatterns:
+    - '*'
+    - http://10.0.0.111:80
